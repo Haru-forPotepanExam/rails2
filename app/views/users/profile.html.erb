@@ -1,0 +1,36 @@
+<h1>プロフィール</h1>
+
+<div>
+    <%= link_to "プロフィール設定", profile_user_path(current_user) %>
+	<%= link_to "アカウント設定", account_user_path(current_user) %>
+</div>
+
+<div>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>ユーザー名</th>
+                <td><%= @user.name %></td>
+            </tr>
+            <tr>
+                <th>プロフィール</th>
+                <td><%= @user.profile %></td>
+            </tr>
+            <tr>
+                <th>プロフィール画像</th>
+                <td>
+                    <% if @user.avatar.attached? %>
+                        <%= image_tag @user.avatar.variant(resize: "30x30^", gravity: "center", crop: "30x30+0+0") %>
+                    <% elsif @user.avatar.blank? %>
+                        <p>プロフィール画像は登録されていません</p>
+                    <% end %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+	
+</div>
+
+<span><%= link_to "編集", :edit_user_registration %></span>
+<span><%= link_to "戻る", :back %></span>

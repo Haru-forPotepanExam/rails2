@@ -1,0 +1,24 @@
+<%= render "shared/error", obj: @reservation %>
+
+<%= form_with(model: reservation, url: user_reservations_path(current_user), method: :post) do |form| %>
+    <div>
+      <%= form.label :start %>
+      <%= form.date_field :start %>
+    </div>
+  
+    <div>
+      <%= form.label :end %>
+      <%= form.date_field :end %>
+    </div>
+
+    <div>
+      <%= form.label :num_of_guests %>
+      <%= form.number_field :num_of_guests %>
+    </div>
+  
+    <%= form.hidden_field :room_id, value: reservation.room.id %>
+  
+    <div>
+      <%= form.submit "予約する" %>
+    </div>
+  <% end %>

@@ -1,0 +1,38 @@
+<h1>新規登録</h1>
+
+<%= render "shared/error", obj: @room %>
+
+<%= form_with model: @room do |f| %>
+    <table>
+        <tbody>
+            <tr>
+                <th><%= f.label :name, "施設名" %></th>
+                <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :detail, "施設詳細" %></th>
+                <td><%= f.text_area :detail %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :fee, "料金" %></th>
+                <td><%= f.number_field :fee %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :address, "住所" %></th>
+                <td><%= f.text_field :address %></td>
+            </tr>
+            <tr>
+                <th><%= f.label :img, "施設画像" %></th>
+                <td><%= f.file_field :img, accept: "image/jpeg,image/gif,image/png" %></td>
+            </tr>
+        </tbody>
+    </table>
+    <%= f.hidden_field :user_id, value: @user.id %>
+
+    <div>
+        <ul>
+        <li><%= f.submit "登録完了する"%></li>
+        <li><%= link_to "戻る", :back %></li>
+        </ul>
+    </div>
+<% end %>

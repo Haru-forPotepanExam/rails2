@@ -1,0 +1,27 @@
+<%= render "shared/search" %>
+
+<div class="total_rooms">
+    <div class="result_head">
+        <span><%= @results.count(:id) %> 件が見つかりました。</span>
+        <%= link_to "戻る", :back %>
+    </div>
+
+    <div class="result_items">
+        <% @results.each do |room| %>
+            <div class="each_item">
+                <p>
+                    <% if room.img.attached? %>
+                        <%= image_tag room.img.variant(resize: "200x150^", gravity: "center", crop: "200x150+0+0") %>
+                    <% elsif room.img.blank? %>
+                        <%= image_tag 'room_default', size: "200x150", class: "default_image" %>
+                    <% end %>
+                </p>
+                <p><%= link_to room.name, room %></p>
+                <p><%= room.fee %></p>
+                <p><%= room.address %></p>
+                <p><%= room.detail %></p>
+                <p><%= link_to "詳細はこちら", room %></p>
+            </div>
+        <% end %>
+    </div>
+</div>

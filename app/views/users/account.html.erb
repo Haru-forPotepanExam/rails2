@@ -1,0 +1,24 @@
+<h1>アカウント</h1>
+
+<div>
+	<%= link_to "プロフィール設定", profile_user_path(current_user) %>
+    <%= link_to "アカウント設定", account_user_path(current_user) %>
+</div>
+
+<div>
+    <table>
+        <tbody>
+            <tr>
+                <th>メールアドレス</th>
+                <td><%= @user.email %></td>
+            </tr>
+            <tr>
+                <th>パスワード</th>
+                <td><span>********</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<span><%= link_to "編集", :edit_account %></span>
+<span><%= link_to "戻る", :back %></span>

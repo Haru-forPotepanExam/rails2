@@ -1,0 +1,11 @@
+<%= render "shared/search" %>
+
+<div class="home_title">
+    <h3>おすすめのエリア</h3>
+</div>
+<div class="home_area">
+    <%= link_to 'Tokyo', search_rooms_path(q: { address_cont: '東京' }) %>
+    <%= link_to 'Osaka', search_rooms_path(q: { address_cont: '大阪' }) %>
+    <%= link_to 'Kyoto', search_rooms_path(q: { address_cont: '京都' }) %>
+    <%= link_to 'Sapporo', search_rooms_path(q: { address_cont: '札幌' }) %>
+</div>

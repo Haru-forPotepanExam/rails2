@@ -1,0 +1,22 @@
+<div class="head_container">
+    <h1><%= link_to "宿泊予約アプリ", :root, class: "logo" %></h1>
+
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar.variant(resize: "30x30^", gravity: "center", crop: "30x30+0+0") %>
+            <% elsif @user.avatar.blank? %>
+                <%= image_tag 'avatar_default', size: "30x30", class: "default_image" %>
+            <% end %>
+            <%= current_user.name %>
+        </button>
+        <ul class="dropdown-menu">
+            <li><%= link_to "施設の新規登録", :new_room, class: "sub_item" %></li>
+            <li><%= link_to "予約済み一覧", user_reservations_path(current_user), class: "sub_item" %></li>
+            <li><%= link_to "登録済み一覧", own_rooms_path(current_user), class: "sub_item" %></li>
+            <li><%= link_to "アカウント設定", profile_user_path(current_user), class: "sub_item" %></li>
+            <li><%= link_to "ログアウト", :destroy_user_session, method: :delete, class: "sub_item" %></li>
+        </ul>
+    </div>
+</div>

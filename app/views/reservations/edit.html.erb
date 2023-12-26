@@ -1,0 +1,39 @@
+<h3>予約を編集する</h3>
+ 
+<table>
+  <tr>
+    <th>施設名</th>
+    <td><%= @room.name %></td>
+  </tr>
+  <tr>
+    <th>施設詳細</th>
+    <td><%= @room.detail %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @room.fee %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @room.address %></td>
+  </tr>
+  <tr>
+  <th>施設画像</th>
+  <td>
+    <% if @room.img.attached? %>
+      <%= image_tag @room.img.variant(resize: "200x150", gravity: "center", crop:"200x150+0+0") %>
+    <% elsif @room.img.blank? %>
+      <%= image_tag 'room_default', size: "200x150", class: "default_image" %>
+    <% end %>
+  </td>
+  </tr>
+</table>
+
+<%= render 'reservations/reservationform', reservation: @reservation %>
+
+<div>
+  <ul>
+    <li><%= link_to "戻る", :back %></li>
+    <li><%= link_to "編集する", [:edit_room] %></li>
+  </ul>
+</div>

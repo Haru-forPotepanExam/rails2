@@ -1,0 +1,44 @@
+<h1>登録済みの施設一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>施設画像</th>
+      <th>施設名</th>
+      <th>施設詳細</th>
+      <th>料金</th>
+      <th>住所</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_rooms.each do |room| %>
+      <tr>
+        <td>
+        <% if room.img.attached? %>
+          <%= image_tag room.img.variant(resize: "100x75", gravity: "center", crop:"100x75+0+0") %>
+        <% elsif room.img.blank? %>
+          <%= image_tag 'room_default', size: "100x75", class: "default_image" %>
+        <% end %>
+        </td>
+        <td><%= link_to room.name, room %></td>
+        <td><%= room.detail %></td>
+        <td><%= room.fee %></td>
+        <td><%= room.address %></td>
+        <td><%= room.created_at.to_s(:datetime_jp) %><td>
+        <td>
+          <%= link_to "参照", room %>
+        </td>
+        <td>
+            <%=link_to "編集", [:edit, room] %>
+        </td>
+        <td>
+          <%= link_to "削除", room, method: :delete, data:{ confirm:"本当に削除しますか？"} %>
+        </td>
+        <td>
+          <%=link_to "戻る", :back %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
