@@ -29,11 +29,11 @@
   </tr>
   <tr>
     <th>チェックイン日</th>
-    <td><%= @reservation.start.to_s(:datetime_jp) %></td>
+    <td><%= @reservation.start_at.to_s(:datetime_jp) %></td>
   </tr>
   <tr>
     <th>チェックアウト日</th>
-    <td><%= @reservation.end.to_s(:datetime_jp) %></td>
+    <td><%= @reservation.end_at.to_s(:datetime_jp) %></td>
   </tr>
   <tr>
     <th>宿泊日数</th>

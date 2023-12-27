@@ -18,6 +18,6 @@ ja:
         detail: 施設詳細    
 
       reservation:
-        start: チェックイン日
-        end: チェックアウト日
+        start_at: チェックイン日
+        end_at: チェックアウト日
         num_of_guests: 宿泊人数

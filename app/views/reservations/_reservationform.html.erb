@@ -2,13 +2,13 @@
 
 <%= form_with(model: reservation, url: user_reservations_path(current_user), method: :post) do |form| %>
     <div>
-      <%= form.label :start %>
-      <%= form.date_field :start %>
+      <%= form.label :start_at %>
+      <%= form.date_field :start_at %>
     </div>
   
     <div>
-      <%= form.label :end %>
-      <%= form.date_field :end %>
+      <%= form.label :end_at %>
+      <%= form.date_field :end_at %>
     </div>
 
     <div>

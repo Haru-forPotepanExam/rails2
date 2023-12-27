@@ -13,6 +13,7 @@ class RoomsController < ApplicationController
   end
 
   def create
+    @user = current_user 
     @room = Room.new(params.require(:room).permit(:name, :detail, :fee, :address, :img, :user_id))
     @room.img.attach(params[:room][:img])
     if @room.save

@@ -24,9 +24,9 @@
         </td>
         <td><%= reservation.room.name %></td>
         <td><%= reservation.room.detail %></td>
-        <td><%= (reservation.end - reservation.start).to_i * reservation.num_of_guests * reservation.room.fee %></td>
-        <td><%= reservation.start.to_s(:datetime_jp) %></td>
-        <td><%= reservation.end.to_s(:datetime_jp) %></td>
+        <td><%= (reservation.end_at - reservation.start_at).to_i * reservation.num_of_guests * reservation.room.fee %></td>
+        <td><%= reservation.start_at.to_s(:datetime_jp) %></td>
+        <td><%= reservation.end_at.to_s(:datetime_jp) %></td>
         <td>
         <% if reservation.updated_at > reservation.created_at %>
           <%= reservation.updated_at.to_s(:datetime_reservation) %>
