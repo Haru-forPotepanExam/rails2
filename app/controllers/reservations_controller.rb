@@ -1,12 +1,13 @@
 class ReservationsController < ApplicationController
   def index
-    @reservations = current_user.reservations
     @user = current_user
+    @reservations = current_user.reservations
   end
 
   def new
     @reservation = Reservation.new
     @room = Room.find(params[:id])
+    @user = current_user
     @reservation.room_id = @room.id
   end
 
@@ -32,29 +33,6 @@ class ReservationsController < ApplicationController
     @sum_fee = @stay_days * @reservation.num_of_guests * @reservation.room.fee
   end
 
-  def edit
-    @user = current_user
-    @reservation = Reservation.find(params[:id])
-    @room = Room.find(@reservation.room_id)
-  end
-
-  def update
-    @reservation = Reservation.find(params[:id])
-    if @reservation.update(params.require(:reservation).permit(:start_at, :end_at, :num_of_guests))
-      flash[:notice] = "予約の編集が完了しました"
-      redirect_to user_reservations_path(current_user)
-    else
-      render "edit"
-    end
-  end
-
-  def destroy
-    @reservation = Reservation.find(params[:id])
-    @reservation.destroy
-    flash[:notice] = "予約を取り消しました"
-    redirect_to user_reservations_path(current_user)
-  end
-
   def confirm
     @user = current_user
     @reservation = Reservation.new(reservation_params)
@@ -65,8 +43,8 @@ class ReservationsController < ApplicationController
       @stay_days = 0
     end
 
-    if @reservation.num_of_guests.present? && @reservation.fee.present?
-      @sum_fee = @stay_days * @reservation.num_of_guests * @reservation.fee
+    if @reservation.num_of_guests.present? && @reservation.room.fee.present?
+      @sum_fee = @stay_days * @reservation.num_of_guests * @reservation.room.fee
     else
       @sum_fee = 0
     end
@@ -75,6 +53,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:start_at, :end_at, :num_of_guests, :room_id)
+    params.require(:reservation).permit(:start_at, :end_at, :num_of_guests, :room_id, :user_id)
   end
 end

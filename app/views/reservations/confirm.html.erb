@@ -40,6 +40,8 @@
     <%= f.hidden_field :end_at %>
     <%= f.hidden_field :num_of_guests %>
     <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+
     <%= f.submit '予約を確定する' %>
 <% end %>
   

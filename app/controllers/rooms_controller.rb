@@ -30,39 +30,6 @@ class RoomsController < ApplicationController
     @reservation = Reservation.new(room: @room)
   end
 
-  def edit
-    @room = Room.find(params[:id])
-    @user = current_user
-  end
-
-  def update
-    @user = current_user
-    @room = Room.find(params[:id])
-    @room.img.attach(params[:room][:img]) if @room.img.blank?
-
-    if @room.update(params.require(:room).permit(:name, :detail, :fee, :address, :img))
-      flash[:notice] = "#{@room.name}の情報を更新しました"
-      redirect_to :rooms
-    else
-      render "edit"
-    end
-
-    if params[:room][:remove_img]
-      @room.img.purge
-    end
-  end
-
-  def destroy
-    @room = current_user.rooms.find(params[:id])
-
-    if @room
-      @room.destroy
-      flash[:notice] = "施設を削除しました"
-    end
-  
-    redirect_to :own_rooms
-  end
-
   def search
     @user = current_user
     @results = @q.result

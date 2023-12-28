@@ -29,15 +29,6 @@
         <td>
           <%= link_to "参照", room %>
         </td>
-        <td>
-            <%=link_to "編集", [:edit, room] %>
-        </td>
-        <td>
-          <%= link_to "削除", room, method: :delete, data:{ confirm:"本当に削除しますか？"} %>
-        </td>
-        <td>
-          <%=link_to "戻る", :back %>
-      </td>
       </tr>
     <% end %>
   </tbody>

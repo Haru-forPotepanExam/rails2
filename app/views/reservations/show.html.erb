@@ -51,7 +51,6 @@
 
 <div>
   <ul>
-    <li><%= link_to "戻る", :back %></li>
-    <li><%= link_to "編集する", edit_user_reservation_path(user_id: current_user.id, id: @reservation.id) %></li>
+    <li><%= link_to "予約一覧へ", user_reservations_path(current_user) %></li>
   </ul>
 </div>
