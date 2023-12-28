@@ -1,0 +1,41 @@
+<h3>施設詳細</h3>
+ 
+<table>
+  <tr>
+    <th>施設名</th>
+    <td><%= @reservation.room.name %></td>
+  </tr>
+  <tr>
+    <th>施設詳細</th>
+    <td><%= @reservation.room.detail %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @reservation.room.fee %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @reservation.room.address %></td>
+  </tr>
+  <tr>
+  <th>施設画像</th>
+  <td>
+    <% if @reservation.room.img.attached? %>
+      <%= image_tag @reservation.room.img.variant(resize: "200x150", gravity: "center", crop:"200x150+0+0") %>
+    <% elsif @reservation.room.img.blank? %>
+      <%= image_tag 'room_default', size: "200x150", class: "default_image" %>
+    <% end %>
+  </td>
+  </tr>
+</table>
+
+<% if user_signed_in? %>
+  <%= render 'reservations/reservationform', reservation: @reservation %>
+<% end %>
+
+
+<div>
+  <ul>
+    <li><%= link_to "戻る", :back %></li>
+  </ul>
+</div>

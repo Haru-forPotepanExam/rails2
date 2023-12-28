@@ -1,0 +1,10 @@
+<h3>施設を検索する</h3>
+<%= search_form_for @q, url: search_rooms_path do |f| %>
+  <%= f.label :address_cont, 'エリア' %>
+  <%= f.search_field :address_cont %>
+
+  <%= f.label :name_or_detail_cont, 'キーワード' %>
+  <%= f.search_field :name_or_detail_cont %>
+  
+  <%= f.submit '検索' %>
+<% end %>

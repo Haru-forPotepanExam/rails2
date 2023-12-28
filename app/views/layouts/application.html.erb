@@ -8,9 +8,26 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if user_signed_in? %>
+        <%= render "shared/login" %>
+      <% else %>
+        <%= render "shared/register" %>
+      <% end %>
+    </header>
+    <div class= "container">
+      <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p> 
+      <% end %>
+
+      <%= yield %>
+    </div>
+    <footer>
+      <h1><%= link_to "宿泊予約アプリ", :root, class: "logo" %></h1>
+    </footer>
   </body>
 </html>

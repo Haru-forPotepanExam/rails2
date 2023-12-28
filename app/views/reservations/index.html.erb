@@ -1,0 +1,43 @@
+<h1>予約済みの施設一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>施設画像</th>
+      <th>施設名</th>
+      <th>施設詳細</th>
+      <th>合計料金</th>
+      <th>チェックイン</th>
+      <th>チェックアウト</th>
+      <th>予約確定日時</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td>
+          <% if reservation.room.img.attached? %>
+            <%= image_tag reservation.room.img.variant(resize: "100x75", gravity: "center", crop:"100x75+0+0") %>
+          <% elsif reservation.room.img.blank? %>
+            <%= image_tag 'room_default', size: "100x75", class: "default_image" %>
+          <% end %>
+        </td>
+        <td><%= reservation.room.name %></td>
+        <td><%= reservation.room.detail %></td>
+        <td><%= (reservation.end_at - reservation.start_at).to_i * reservation.num_of_guests * reservation.room.fee %></td>
+        <td><%= reservation.start_at.to_s(:datetime_jp) %></td>
+        <td><%= reservation.end_at.to_s(:datetime_jp) %></td>
+        <td>
+        <% if reservation.updated_at > reservation.created_at %>
+          <%= reservation.updated_at.to_s(:datetime_reservation) %>
+        <% else %>
+          <%= reservation.created_at.to_s(:datetime_reservation) %>
+        <% end %>
+        </td>
+        <td>
+          <%= link_to "参照", user_reservation_path(user_id: current_user.id, id: reservation.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

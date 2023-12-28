@@ -1,0 +1,98 @@
+/*全体のレイアウトとヘッダーフッター周り*/
+header {
+    background-color: #997b6c;
+    height:100px;
+    margin-bottom: 100px;
+    padding: 15px;
+}
+
+footer {
+    background-color: #997b6c;
+    height:100px;
+    margin-top: 100px;
+    padding: 15px;
+}
+
+.notice {
+
+}
+
+.container {
+    margin: 0 100px;
+}
+
+.head_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    text-decoration: none;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.head {
+    color: #fff;
+    text-decoration: none;
+    padding-right: 30px;
+}
+
+/*ホームと検索*/
+.home_title {
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+.home_area {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 100px;
+}
+
+/*共通*/
+ul {
+    list-style: none;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    margin-top: 10px;
+    border: solid;
+    border-color: #997b6c;
+    border-collapse: collapse; 
+    text-align: center;
+}
+
+table th {
+    font-size: 15px;
+}
+
+table td {
+    border: solid;
+    border-color: #997b6c;
+}
+
+/*検索結果*/
+.total_rooms {
+    margin-top: 30px;
+}
+
+.result_head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.result_items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.each_item {
+    border: 2px solid;
+    border-color: #997b6c;
+    border-radius: 5px;
+    padding: 10px;
+}

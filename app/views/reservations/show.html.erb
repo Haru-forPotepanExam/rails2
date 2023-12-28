@@ -1,0 +1,56 @@
+<h3>予約詳細</h3>
+ 
+<table>
+  <tr>
+    <th>施設名</th>
+    <td><%= @reservation.room.name %></td>
+  </tr>
+  <tr>
+    <th>施設詳細</th>
+    <td><%= @reservation.room.detail %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @reservation.room.fee %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @reservation.room.address %></td>
+  </tr>
+  <tr>
+    <th>施設画像</th>
+    <td>
+        <% if @reservation.room.img.attached? %>
+            <%= image_tag @reservation.room.img.variant(resize: "200x150", gravity: "center", crop:"200x150+0+0") %>
+        <% elsif @reservation.room.img.blank? %>
+            <%= image_tag 'room_default', size: "200x150", class: "default_image" %>
+        <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>チェックイン日</th>
+    <td><%= @reservation.start_at.to_s(:datetime_jp) %></td>
+  </tr>
+  <tr>
+    <th>チェックアウト日</th>
+    <td><%= @reservation.end_at.to_s(:datetime_jp) %></td>
+  </tr>
+  <tr>
+    <th>宿泊日数</th>
+    <td><%= @stay_days %> 泊</td>
+  </tr>
+  <tr>
+    <th>人数</th>
+    <td><%= @reservation.num_of_guests %></td>
+  </tr>
+  <tr>
+    <th>支払い金額</th>
+    <td><%= @sum_fee %></td>
+  </tr>
+</table>
+
+<div>
+  <ul>
+    <li><%= link_to "予約一覧へ", :reservations_index %></li>
+  </ul>
+</div>

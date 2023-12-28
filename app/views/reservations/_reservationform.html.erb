@@ -1,0 +1,25 @@
+<%= render "shared/error", obj: @reservation %>
+
+  <%= form_with(model: @reservation, url: confirm_user_path(current_user), method: :get) do |form| %>
+    <div>
+      <%= form.label :start_at %>
+      <%= form.date_field :start_at %>
+    </div>
+  
+    <div>
+      <%= form.label :end_at %>
+      <%= form.date_field :end_at %>
+    </div>
+
+    <div>
+      <%= form.label :num_of_guests %>
+      <%= form.number_field :num_of_guests %>
+    </div>
+  
+    <%= form.hidden_field :room_id, value: @room.id %>
+    <%= form.hidden_field :user_id, value: @user.id %>
+  
+    <div>
+      <%= form.submit "確認画面に進む" %>
+    </div>
+  <% end %>
