@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       get 'profile'
       get 'account'
+      get 'confirm', to: 'reservations#confirm'
     end
   end
 

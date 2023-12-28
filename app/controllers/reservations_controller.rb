@@ -7,12 +7,13 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     @room = Room.find(params[:id])
+    @reservation.room_id = @room.id
   end
 
   def create
     @user = current_user
     if user_signed_in?
-      @reservation = current_user.reservations.build(reservation_params)
+      @reservation = Reservation.new(reservation_params)
       if @reservation.save
         redirect_to :user_reservations, notice: "予約が完了しました"
       else
@@ -33,8 +34,8 @@ class ReservationsController < ApplicationController
 
   def edit
     @user = current_user
-    @room = current_user.rooms.find(params[:id])
     @reservation = Reservation.find(params[:id])
+    @room = Room.find(@reservation.room_id)
   end
 
   def update
@@ -54,9 +55,26 @@ class ReservationsController < ApplicationController
     redirect_to user_reservations_path(current_user)
   end
 
+  def confirm
+    @user = current_user
+    @reservation = Reservation.new(reservation_params)
+    @room = Room.find(@reservation.room_id)
+    if @reservation.start_at.present? && @reservation.end_at.present?
+      @stay_days = (@reservation.end_at - @reservation.start_at).to_i
+    else
+      @stay_days = 0
+    end
+
+    if @reservation.num_of_guests.present? && @reservation.fee.present?
+      @sum_fee = @stay_days * @reservation.num_of_guests * @reservation.fee
+    else
+      @sum_fee = 0
+    end
+  end
+
   private
 
   def reservation_params
-    params.require(:reservation).permit(:start_at, :end_at,:num_of_guests, :room_id)
+    params.require(:reservation).permit(:start_at, :end_at, :num_of_guests, :room_id)
   end
 end
