@@ -29,7 +29,10 @@
   </tr>
 </table>
 
-<%= render 'reservations/reservationform', reservation: @reservation %>
+<% if user_signed_in? %>
+  <%= render 'reservations/reservationform', reservation: @reservation %>
+<% end %>
+
 
 <div>
   <ul>

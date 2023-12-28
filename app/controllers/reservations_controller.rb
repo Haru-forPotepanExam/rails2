@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
     if user_signed_in?
       @reservation = Reservation.new(reservation_params)
       if @reservation.save
-        redirect_to :user_reservations, notice: "予約が完了しました"
+        redirect_to :reservations_index, notice: "予約が完了しました"
       else
         @room = Room.find(@reservation.room_id)
         render 'rooms/show'
